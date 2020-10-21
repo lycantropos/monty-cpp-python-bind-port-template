@@ -7,7 +7,6 @@ from distutils.errors import CompileError
 from glob import glob
 from pathlib import Path
 
-import pybind11
 from setuptools import (Extension,
                         find_packages,
                         setup)
@@ -80,6 +79,13 @@ class BuildExt(build_ext):
 
 project_base_url = 'https://github.com/{{github_login}}/{{project}}/'
 
+
+class LazyPybindInclude:
+    def __str__(self) -> str:
+        import pybind11
+        return pybind11.get_include()
+
+
 setup(name={{project}}.__name__,
       packages=find_packages(exclude=('tests', 'tests.*')),
       version={{project}}.__version__,
@@ -100,10 +106,10 @@ setup(name={{project}}.__name__,
       download_url=project_base_url + 'archive/master.zip',
       python_requires='>={{min_python_version}}',
       install_requires=Path('requirements.txt').read_text(),
+      setup_requires=Path('requirements-setup.txt').read_text(),
       cmdclass={'build_ext': BuildExt},
       ext_modules=[Extension('_' + {{project}}.__name__,
                              glob('src/*.cpp'),
-                             include_dirs=[pybind11.get_include(),
-                                           pybind11.get_include(True)],
+                             include_dirs=[LazyPybindInclude()],
                              language='c++')],
       zip_safe=False)
