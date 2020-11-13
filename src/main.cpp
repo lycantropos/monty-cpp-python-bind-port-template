@@ -11,5 +11,5 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(MODULE_NAME, m) {
   m.doc() = R"pbdoc({{description}})pbdoc";
-  m.attr("__version__") = VERSION_INFO;
+  m.attr("__version__") = C_STR(VERSION_INFO);
 }
