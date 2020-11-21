@@ -7,12 +7,6 @@ RUN pip install --upgrade pip setuptools
 
 WORKDIR /opt/{{project}}
 
-COPY requirements-setup.txt .
-RUN pip install --force-reinstall -r requirements-setup.txt
-
-COPY requirements.txt .
-RUN pip install --force-reinstall -r requirements.txt
-
 COPY requirements-tests.txt .
 RUN pip install --force-reinstall -r requirements-tests.txt
 

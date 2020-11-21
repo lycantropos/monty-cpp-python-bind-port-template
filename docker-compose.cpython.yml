@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  {{project}}:
+  {{project}}-cpython:
     build:
       context: .
       args:
-        - IMAGE_NAME=${IMAGE_NAME}
-        - IMAGE_VERSION=${IMAGE_VERSION}
-    image: {{dockerhub_login}}/{{project}}:{{version}}
+        - IMAGE_NAME=${CPYTHON_IMAGE_NAME}
+        - IMAGE_VERSION=${CPYTHON_IMAGE_VERSION}
+    image: {{dockerhub_login}}/{{project}}-cpython:{{version}}
     volumes:
       - ./{{project}}/:/opt/{{project}}/{{project}}/
       - ./src/:/opt/{{project}}/src/

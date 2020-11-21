@@ -6,13 +6,15 @@
 [![](https://img.shields.io/github/license/{{github_login}}/{{project}}.svg)](https://github.com/{{github_login}}/{{project}}/blob/master/LICENSE "License")
 [![](https://badge.fury.io/py/{{project}}.svg)](https://badge.fury.io/py/{{project}} "PyPI")
 
-In what follows `python` is an alias for `python{{min_python_version.split('.')[:2]|join('.')}}` or any later
-version (`python{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}` and so on).
+In what follows `python` is an alias for `python{{min_python_version.split('.')[:2]|join('.')}}`
+or `pypy{{min_python_version.split('.')[:2]|join('.')}}`
+or any later version
+(`python{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}`, `pypy{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}` and so on).
 
 Installation
 ------------
 
-Install the latest `pip` & `setuptools` packages versions:
+Install the latest `pip` & `setuptools` packages versions
 ```bash
 python -m pip install --upgrade pip setuptools
 ```
@@ -32,12 +34,12 @@ git clone https://github.com/{{github_login}}/{{project}}.git
 cd {{project}}
 ```
 
-Install dependencies:
+Install dependencies
 ```bash
 python -m pip install --force-reinstall -r requirements.txt
 ```
 
-Install:
+Install
 ```bash
 python setup.py install
 ```
@@ -88,7 +90,7 @@ This will set version to `major.minor.patch`.
 
 ### Running tests
 
-Install dependencies:
+Install dependencies
 ```bash
 python -m pip install --force-reinstall -r requirements-tests.txt
 ```
@@ -99,16 +101,40 @@ pytest
 ```
 
 Inside `Docker` container:
-```bash
-docker-compose up
-```
+- with `CPython`
+  ```bash
+  docker-compose --file docker-compose.cpython.yml up
+  ```
+- with `PyPy`
+  ```bash
+  docker-compose --file docker-compose.pypy.yml up
+  ```
 
 `Bash` script (e.g. can be used in `Git` hooks):
-```bash
-./run-tests.sh
-```
+- with `CPython`
+  ```bash
+  ./run-tests.sh
+  ```
+  or
+  ```bash
+  ./run-tests.sh cpython
+  ```
+
+- with `PyPy`
+  ```bash
+  ./run-tests.sh pypy
+  ```
 
 `PowerShell` script (e.g. can be used in `Git` hooks):
-```powershell
-.\run-tests.ps1
-```
+- with `CPython`
+  ```powershell
+  .\run-tests.ps1
+  ```
+  or
+  ```powershell
+  .\run-tests.ps1 cpython
+  ```
+- with `PyPy`
+  ```powershell
+  .\run-tests.ps1 pypy
+  ```

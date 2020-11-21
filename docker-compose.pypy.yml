@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  {{project}}-pypy:
+    build:
+      context: .
+      args:
+        - IMAGE_NAME=${PYPY_IMAGE_NAME}
+        - IMAGE_VERSION=${PYPY_IMAGE_VERSION}
+    image: {{dockerhub_login}}/{{project}}-pypy:{{version}}
+    volumes:
+      - ./{{project}}/:/opt/{{project}}/{{project}}/
+      - ./src/:/opt/{{project}}/src/
+      - ./tests/:/opt/{{project}}/tests/
+      - ./README.md:/opt/{{project}}/README.md
+      - ./requirements.txt:/opt/{{project}}/requirements.txt
+      - ./requirements-setup.txt:/opt/{{project}}/requirements-setup.txt
+      - ./requirements-tests.txt:/opt/{{project}}/requirements-tests.txt
+      - ./setup.py:/opt/{{project}}/setup.py
+      - ./pytest.ini:/opt/{{project}}/pytest.ini
+    entrypoint: pytest
