@@ -12,10 +12,8 @@ services:
       - ./{{project}}/:/opt/{{project}}/{{project}}/
       - ./pytest.ini:/opt/{{project}}/pytest.ini
       - ./README.md:/opt/{{project}}/README.md
-      - ./requirements-setup.txt:/opt/{{project}}/requirements-setup.txt
       - ./requirements-tests.txt:/opt/{{project}}/requirements-tests.txt
       - ./requirements.txt:/opt/{{project}}/requirements.txt
       - ./setup.py:/opt/{{project}}/setup.py
-      - ./src/:/opt/{{project}}/src/
       - ./tests/:/opt/{{project}}/tests/
     entrypoint: pytest
