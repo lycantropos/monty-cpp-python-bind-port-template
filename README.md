@@ -19,7 +19,7 @@ python -m pip install --upgrade pip setuptools
 
 ### User
 
-Download and install the latest stable version from `PyPI` repository:
+Download and install the latest stable version from `PyPI` repository
 ```bash
 python -m pip install --upgrade {{project}}
 ```
@@ -30,11 +30,6 @@ Download the latest version from `GitHub` repository
 ```bash
 git clone https://github.com/{{github_login}}/{{project}}.git
 cd {{project}}
-```
-
-Install dependencies
-```bash
-python -m pip install --force-reinstall -r requirements.txt
 ```
 
 Install
