@@ -20,9 +20,9 @@ parameters = dict(
         description={{project}}.__doc__,
         long_description=read_file('README.md'),
         long_description_content_type='text/markdown',
-        author='Azat Ibrakov',
-        author_email='azatibrakov@gmail.com',
-        license='MIT License',
+        author='{{full_name}}',
+        author_email='{{email}}',
+        license='{{license}}',
         classifiers=[
             '{{license_classifier}}',
 {% for minor in range(min_python_version.split(".")[1] | int, (max_python_version.split(".")[1]) | int + 1) %}
@@ -31,7 +31,6 @@ parameters = dict(
             'Programming Language :: Python :: Implementation :: CPython',
             'Programming Language :: Python :: Implementation :: PyPy',
         ],
-        license='{{license}}',
         url=project_base_url,
         download_url=project_base_url + 'archive/master.zip',
         python_requires='>={{min_python_version}}',
@@ -118,8 +117,7 @@ if platform.python_implementation() == 'CPython':
             cmdclass={'build_ext': BuildExt},
             ext_modules=[Extension('_' + {{project}}.__name__,
                                    glob('src/*.cpp'),
-                                   include_dirs=[LazyPybindInclude(),
-                                                 Path.cwd() / 'include'],
+                                   include_dirs=[LazyPybindInclude()],
                                    language='c++')],
             zip_safe=False)
 setup(**parameters)
