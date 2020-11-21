@@ -6,10 +6,8 @@
 [![](https://img.shields.io/github/license/{{github_login}}/{{project}}.svg)](https://github.com/{{github_login}}/{{project}}/blob/master/LICENSE "License")
 [![](https://badge.fury.io/py/{{project}}.svg)](https://badge.fury.io/py/{{project}} "PyPI")
 
-In what follows `python` is an alias for `python{{min_python_version.split('.')[:2]|join('.')}}`
-or `pypy{{min_python_version.split('.')[:2]|join('.')}}`
-or any later version
-(`python{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}`, `pypy{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}` and so on).
+In what follows `python` is an alias for `python{{min_python_version.split('.')[:2]|join('.')}}` or `pypy{{min_python_version.split('.')[:2]|join('.')}}`
+or any later version (`python{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}`, `pypy{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}` and so on).
 
 Installation
 ------------
