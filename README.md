@@ -4,7 +4,7 @@
 [![](https://dev.azure.com/{{azure_login}}/{{project}}/_apis/build/status/{{github_login}}.{{project}}?branchName=master)](https://dev.azure.com/{{azure_login}}/{{project}}/_build/latest?branchName=master "Azure Pipelines")
 [![](https://codecov.io/gh/{{github_login}}/{{project}}/branch/master/graph/badge.svg)](https://codecov.io/gh/{{github_login}}/{{project}} "Codecov")
 [![](https://img.shields.io/github/license/{{github_login}}/{{project}}.svg)](https://github.com/{{github_login}}/{{project}}/blob/master/LICENSE "License")
-[![](https://badge.fury.io/py/{{project}}.svg)](https://badge.fury.io/py/{{project}} "PyPI")
+[![](https://badge.fury.io/py/{{project.replace("_", "-")}}.svg)](https://badge.fury.io/py/{{project.replace("_", "-")}} "PyPI")
 
 In what follows `python` is an alias for `python{{min_python_version.split('.')[:2]|join('.')}}` or `pypy{{min_python_version.split('.')[:2]|join('.')}}`
 or any later version (`python{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}`, `pypy{{min_python_version.split('.')[0]}}.{{min_python_version.split('.')[1]|int + 1}}` and so on).
