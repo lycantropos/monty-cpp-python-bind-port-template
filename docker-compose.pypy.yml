@@ -9,11 +9,7 @@ services:
         - IMAGE_VERSION=${PYPY_IMAGE_VERSION}
     image: {{dockerhub_login}}/{{project}}-pypy:{{version}}
     volumes:
-      - ./{{project}}/:/opt/{{project}}/{{project}}/
-      - ./pytest.ini:/opt/{{project}}/pytest.ini
-      - ./README.md:/opt/{{project}}/README.md
-      - ./requirements-tests.txt:/opt/{{project}}/requirements-tests.txt
-      - ./requirements.txt:/opt/{{project}}/requirements.txt
-      - ./setup.py:/opt/{{project}}/setup.py
-      - ./tests/:/opt/{{project}}/tests/
+{% for resource in [project, "pytest.ini", "README.md", "requirements.txt", "requirements-tests.txt", "setup.py", "tests"] | sort %}
+      - ./{{resource}}:/opt/{{project}}/{{resource}}
+{% endfor %}
     entrypoint: pytest
