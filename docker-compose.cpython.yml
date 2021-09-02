@@ -9,7 +9,7 @@ services:
         - IMAGE_VERSION=${CPYTHON_IMAGE_VERSION}
     image: {{dockerhub_login}}/{{project}}-cpython:{{version}}
     volumes:
-{% for resource in [project, "pytest.ini", "README.md", "requirements-setup.txt", "requirements-tests.txt", "requirements.txt", "setup.py", "src", "tests"] | sort %}
+{% for resource in [project, "pytest.ini", "README.md", "requirements-setup.txt", "requirements-tests.txt", "setup.py", "src", "tests"] | sort %}
       - ./{{resource}}:/opt/{{project}}/{{resource}}
 {% endfor %}
     entrypoint: pytest
