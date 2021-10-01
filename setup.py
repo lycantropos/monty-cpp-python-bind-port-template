@@ -43,8 +43,12 @@ if platform.python_implementation() == 'CPython':
     from distutils.ccompiler import CCompiler
     from distutils.errors import CompileError
     from glob import glob
-    from setuptools import Extension
+    from typing import Any
+
+    from setuptools import (Command,
+                            Extension)
     from setuptools.command.build_ext import build_ext
+    from setuptools.command.develop import develop
 
 
     def has_flag(compiler: CCompiler, name: str) -> bool:
@@ -53,7 +57,7 @@ if platform.python_implementation() == 'CPython':
         """
         with tempfile.NamedTemporaryFile('w',
                                          suffix='.cpp') as file:
-            file.write('int main (int argc, char **argv) { return 0; }')
+            file.write('int main(void) { return 0; }')
             try:
                 compiler.compile([file.name],
                                  extra_postargs=[name])
@@ -106,6 +110,22 @@ if platform.python_implementation() == 'CPython':
             super().build_extensions()
 
 
+    class Develop(develop):
+        def reinitialize_command(self,
+                                 name: str,
+                                 reinit_subcommands: int = 0,
+                                 **kwargs: Any) -> Command:
+            if name == build_ext.__name__:
+                kwargs.setdefault('debug', 1)
+            result = super().reinitialize_command(name, reinit_subcommands,
+                                                  **kwargs)
+            if name == build_ext.__name__:
+                result.ensure_finalized()
+                for extension in result.extensions:
+                    extension.undef_macros.append('NDEBUG')
+            return result
+
+
     class LazyPybindInclude:
         def __str__(self) -> str:
             import pybind11
@@ -113,7 +133,8 @@ if platform.python_implementation() == 'CPython':
 
 
     parameters.update(
-            cmdclass={'build_ext': BuildExt},
+            cmdclass={build_ext.__name__: BuildExt,
+                      develop.__name__: Develop},
             ext_modules=[Extension('_' + {{project}}.__name__,
                                    glob('src/*.cpp'),
                                    include_dirs=[LazyPybindInclude()],
