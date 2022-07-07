@@ -22,10 +22,10 @@ parameters = dict(
         long_description_content_type='text/markdown',
         author='{{full_name}}',
         author_email='{{email}}',
-        license='{{license}}',
+        license='{{spdx_license_name}}',
         classifiers=[
-            '{{license_classifier}}',
-{% for minor in range(min_python_version.split(".")[1] | int, (max_python_version.split(".")[1]) | int + 1) %}
+            '{{trove_license_classifier}}',
+{% for minor in range(min_version_of['python'].split(".")[1] | int, (max_version_of['python'].split(".")[1]) | int + 1) %}
             'Programming Language :: Python :: 3.{{minor}}',
 {% endfor %}
             'Programming Language :: Python :: Implementation :: CPython',
@@ -33,7 +33,7 @@ parameters = dict(
         ],
         url=project_base_url,
         download_url=project_base_url + 'archive/master.zip',
-        python_requires='>={{min_python_version}}',
+        python_requires='>={{min_version_of['python']}}',
         setup_requires=read_file('requirements-setup.txt'))
 if platform.python_implementation() == 'CPython':
     import sys
