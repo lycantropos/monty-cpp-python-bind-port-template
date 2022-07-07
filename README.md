@@ -1,7 +1,7 @@
 {{project}}
 {{"=" * project|length}}
 
-[![](https://dev.azure.com/{{azure_login}}/{{project}}/_apis/build/status/{{github_login}}.{{project}}?branchName=master)](https://dev.azure.com/{{azure_login}}/{{project}}/_build/latest?branchName=master "Azure Pipelines")
+[![](https://github.com/{{github_login}}/{{project}}/workflows/CI/badge.svg)](https://github.com/{{github_login}}/{{project}}/actions/workflows/ci.yml "Github Actions")
 [![](https://codecov.io/gh/{{github_login}}/{{project}}/branch/master/graph/badge.svg)](https://codecov.io/gh/{{github_login}}/{{project}} "Codecov")
 [![](https://img.shields.io/github/license/{{github_login}}/{{project}}.svg)](https://github.com/{{github_login}}/{{project}}/blob/master/LICENSE "License")
 [![](https://badge.fury.io/py/{{project.replace("_", "-")}}.svg)](https://badge.fury.io/py/{{project.replace("_", "-")}} "PyPI")
