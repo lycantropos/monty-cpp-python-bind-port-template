@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ '{{ matrix.platform.os }}' }}
     strategy:
       matrix:
-        python_version: ['3.{{ range(min_version_of['python'].split('.')[1]|int, (max_python_version.split('.')[1])|int + 1) | join('\', \'3.') }}']
+        python_version: ['3.{{ range(min_version_of['python'].split('.')[1]|int, (max_version_of['python'].split('.')[1])|int + 1) | join('\', \'3.') }}']
         platform: [
           {
             os: 'macos-latest',
@@ -109,7 +109,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        python_version: ['3.{{ range(min_version_of['python'].split('.')[1]|int, (max_python_version.split('.')[1])|int + 1) | join('\', \'3.') }}']
+        python_version: ['3.{{ range(min_version_of['python'].split('.')[1]|int, (max_version_of['python'].split('.')[1])|int + 1) | join('\', \'3.') }}']
         platform: [
           {
             os: 'macos-latest',
